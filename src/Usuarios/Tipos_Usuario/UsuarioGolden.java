@@ -31,6 +31,9 @@ public class UsuarioGolden extends Usuario{
 		/*
 		 * Aquí va el menú de juegos para los usuarios tipo "Golden"
 		 */
+		Dados.DAD();
+		Carrera_de_caballos.CDC();
+		Blackjack.BJ();
 	}
 	
 	@Override

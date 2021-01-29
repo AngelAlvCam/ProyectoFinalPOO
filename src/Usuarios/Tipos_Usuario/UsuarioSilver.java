@@ -32,6 +32,8 @@ public class UsuarioSilver extends Usuario{
 		/*
 		 * Aquí va el menú de juegos para los usuarios tipo "Silver"
 		 */
+		Dados.DAD();
+		Blackjack.BJ();
 	}
 
 	@Override

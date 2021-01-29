@@ -1,10 +1,8 @@
 package Usuarios.Tipos_Usuario;
 
 import Usuarios.Usuario;
-
 import java.util.Hashtable;
 import java.util.Scanner;
-
 import Juegos.*;
 
 /**
@@ -32,6 +30,9 @@ public class UsuarioDiamond extends Usuario{
 		/*
 		 * Aquí va el menú de juegos para los usuarios tipo "Diamond"
 		 */
+		Dados.DAD();
+		Carrera_de_caballos.CDC();
+		Blackjack.BJ();
 	}
 
 	@Override
