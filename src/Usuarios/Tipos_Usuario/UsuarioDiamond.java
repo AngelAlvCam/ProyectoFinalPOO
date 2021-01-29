@@ -37,7 +37,11 @@ public class UsuarioDiamond extends Usuario{
 
 	@Override
 	public boolean Verificar_Apuesta(int apuesta) {
-		return true;
+		if (this.getFichas() > 0 && this.getFichas() >= apuesta) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public static void CrearUsuario(Hashtable<String, Usuario> Usuarios) {
