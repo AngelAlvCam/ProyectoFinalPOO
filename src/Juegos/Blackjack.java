@@ -6,7 +6,7 @@ package Juegos;
  */
 
 public class Blackjack {
-	public static boolean BJ() {
+	public static boolean Jugar() {
 		System.out.println("Este es un blackjack");
 		return true;
 	}

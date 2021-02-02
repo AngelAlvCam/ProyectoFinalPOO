@@ -32,8 +32,40 @@ public class UsuarioSilver extends Usuario{
 		/*
 		 * Aquí va el menú de juegos para los usuarios tipo "Silver"
 		 */
-		Dados.DAD();
-		Blackjack.BJ();
+		int op;
+		int apuesta;
+		boolean win;
+		boolean stat = true;
+		Scanner sc = new Scanner(System.in);
+		
+		while (stat == true) {
+			System.out.println("1) Dados");
+			System.out.println("2) Blackjack");
+			System.out.println("3) Salir");
+			op = sc.nextInt();
+			System.out.println("Ingrese su apuesta, usted puede apostar a lo mucho la mitad de su total de fichas");
+			apuesta = sc.nextInt();
+			if (Verificar_Apuesta(apuesta) == true) {
+				switch (op) {
+					case 1:
+						win = Dados.Jugar();
+						Agregar_Fichas(apuesta, win);
+						break;
+					case 2:
+						win = Blackjack.Jugar();
+						Agregar_Fichas(apuesta, win);
+						break;
+					case 3:
+						stat = false;
+						break;
+					default:
+						System.out.println("Opción inválida");
+						break;
+				}
+			} else {
+				System.out.println("La cantidad de fichas es inválida... ");
+			}
+		}
 	}
 
 	@Override
@@ -44,6 +76,20 @@ public class UsuarioSilver extends Usuario{
 			return false;
 		}
 	}
+	
+	@Override
+	public void Agregar_Fichas(int apuesta, boolean win) {
+		if (win) {
+			int bono = apuesta/4;
+			setFichas(getFichas() + apuesta + bono);
+			System.out.println("Has ganado " + (apuesta + bono) + " fichas");
+		} else {
+			setFichas(getFichas() - apuesta);
+			System.out.println("Has perdido " + apuesta + " fichas");
+		}
+		System.out.println("Tu nuevo saldo es: " + getFichas());
+	}
+	
 	
 	public static void CrearUsuario(Hashtable<String, Usuario> Usuarios) {
 		Scanner sc = new Scanner(System.in);

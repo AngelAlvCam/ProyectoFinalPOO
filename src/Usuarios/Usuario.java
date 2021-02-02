@@ -48,6 +48,32 @@ public abstract class Usuario implements Jugar, Serializable {
 		return contrasena;
 	}
 
+	
+	
+	protected void setFichas(int fichas) {
+		this.fichas = fichas;
+	}
+
+	protected void setID_Usuario(String iD_Usuario) {
+		ID_Usuario = iD_Usuario;
+	}
+
+	protected void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	protected void setApellido_P(String apellido_P) {
+		this.apellido_P = apellido_P;
+	}
+
+	protected void setApellido_M(String apellido_M) {
+		this.apellido_M = apellido_M;
+	}
+
+	protected void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
+	}
+
 	@Override
 	public String toString() {
 		String aux = nombre + ", " + apellido_P + ", " + apellido_M + ", " + 
