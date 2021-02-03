@@ -9,7 +9,7 @@ import Usuarios.Interfaces_Usuarios.Jugar;
  * @author Flutt
  *
  */
-public abstract class Usuario implements Jugar, Serializable {
+public abstract class Usuario implements Serializable, Jugar {
 	private int fichas;
 	private String ID_Usuario;
 	private String nombre;
@@ -29,19 +29,19 @@ public abstract class Usuario implements Jugar, Serializable {
 	
 	protected Usuario() {};
 	
-	protected int getFichas() {
+	public int getFichas() {
 		return fichas;
 	}
 	public String getID_Usuario() {
 		return ID_Usuario;
 	}
-	protected String getNombre() {
+	public String getNombre() {
 		return nombre;
 	}
-	protected String getApellido_P() {
+	public String getApellido_P() {
 		return apellido_P;
 	}
-	protected String getApellido_M() {
+	public String getApellido_M() {
 		return apellido_M;
 	}
 	public String getContrasena() {
@@ -49,28 +49,27 @@ public abstract class Usuario implements Jugar, Serializable {
 	}
 
 	
-	
-	protected void setFichas(int fichas) {
+	public void setFichas(int fichas) {
 		this.fichas = fichas;
 	}
 
-	protected void setID_Usuario(String iD_Usuario) {
+	public void setID_Usuario(String iD_Usuario) {
 		ID_Usuario = iD_Usuario;
 	}
 
-	protected void setNombre(String nombre) {
+	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-	protected void setApellido_P(String apellido_P) {
+	public void setApellido_P(String apellido_P) {
 		this.apellido_P = apellido_P;
 	}
 
-	protected void setApellido_M(String apellido_M) {
+	public void setApellido_M(String apellido_M) {
 		this.apellido_M = apellido_M;
 	}
 
-	protected void setContrasena(String contrasena) {
+	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
 	}
 
