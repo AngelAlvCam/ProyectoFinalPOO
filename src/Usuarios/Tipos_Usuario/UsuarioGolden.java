@@ -16,13 +16,9 @@ import java.util.Scanner;
  */
 public class UsuarioGolden extends Usuario{
 	
-	public UsuarioGolden(String ID_Usuario, String nombre, String apellido_P, 
+	private UsuarioGolden(String ID_Usuario, String nombre, String apellido_P, 
 			String apellido_M, String contrasena) {
 		super(ID_Usuario, nombre, apellido_P, apellido_M, contrasena, 350);
-	}
-	
-	public UsuarioGolden() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override

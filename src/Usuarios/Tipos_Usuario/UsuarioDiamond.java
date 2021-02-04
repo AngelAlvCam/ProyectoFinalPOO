@@ -15,13 +15,9 @@ import Juegos.*;
  */
 public class UsuarioDiamond extends Usuario{
 	
-	public UsuarioDiamond(String ID_Usuario, String nombre, String apellido_P, 
+	private UsuarioDiamond(String ID_Usuario, String nombre, String apellido_P, 
 			String apellido_M, String contrasena) {
 		super(ID_Usuario, nombre, apellido_P, apellido_M, contrasena, 500);
-	}
-	
-	public UsuarioDiamond() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
@@ -65,6 +61,7 @@ public class UsuarioDiamond extends Usuario{
 						System.out.println("Opción inválida");
 						break;
 				}
+				
 			} else {
 				System.out.println("La cantidad de fichas es inválida... ");
 			}

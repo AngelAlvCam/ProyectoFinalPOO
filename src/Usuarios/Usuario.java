@@ -27,8 +27,6 @@ public abstract class Usuario implements Serializable, Jugar {
 		this.fichas = fichas;
 	}
 	
-	protected Usuario() {};
-	
 	public int getFichas() {
 		return fichas;
 	}

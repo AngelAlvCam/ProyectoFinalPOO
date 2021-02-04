@@ -97,7 +97,9 @@ public class Prueba {
 					Administrador auxadmin = (Administrador) aux;
 					auxadmin.MenuAdmin(Usuarios, nombre_Archivo);
 				} else {
-				aux.MenuJugar();
+					aux.MenuJugar();
+					Utilidades.ActualizarArchivo(nombre_Archivo, Usuarios);
+					System.out.println("Progreso guardado");
 				}
 			} else {
 				System.out.println("Contraseña incorrecta...");

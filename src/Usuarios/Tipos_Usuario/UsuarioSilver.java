@@ -17,14 +17,11 @@ import Juegos.*;
  */
 public class UsuarioSilver extends Usuario{
 	
-	public UsuarioSilver(String ID_Usuario, String nombre, String apellido_P, 
+	private UsuarioSilver(String ID_Usuario, String nombre, String apellido_P, 
 			String apellido_M, String contrasena) {
 		super(ID_Usuario, nombre, apellido_P, apellido_M, contrasena, 200);
 	}
 	
-	public UsuarioSilver() {
-		// TODO Auto-generated constructor stub
-	}
 	
 	@Override
 	public void MenuJugar() {

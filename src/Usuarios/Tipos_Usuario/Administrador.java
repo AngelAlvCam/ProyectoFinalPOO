@@ -5,6 +5,7 @@ import java.util.Scanner;
 import Principal.Utilidades;
 import Usuarios.Usuario;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Administrador extends Usuario {
 
@@ -19,7 +20,6 @@ public class Administrador extends Usuario {
 		
 	}
 
-	@Override
 	public boolean Verificar_Apuesta(int apuesta) {
 		// TODO Auto-generated method stub
 		return false;
@@ -40,7 +40,8 @@ public class Administrador extends Usuario {
 		while (stat == true) {
 			System.out.println("1) Borrar usuarios");
 			System.out.println("2) Editar usuarios");
-			System.out.println("3) Salir");
+			System.out.println("3) Ver usuarios");
+			System.out.println("4) Salir");
 			op = sc.nextInt();
 			switch(op) {
 				case 1:
@@ -50,6 +51,9 @@ public class Administrador extends Usuario {
 					EditarUsuarios(Usuarios, nombre_Archivo);
 					break;
 				case 3:
+					VerUsuarios(Usuarios);
+					break;
+				case 4:
 					stat = false;
 					break;
 				default: 
@@ -79,15 +83,27 @@ public class Administrador extends Usuario {
 		Usuarios.put(id, aux);
 	}
 	
+	private void VerUsuarios(Hashtable<String, Usuario> Usuarios) {
+		Set<String> keyset = Usuarios.keySet();
+		for (String aux : keyset) {
+			System.out.println(Usuarios.get(aux));
+		}
+	}
+	
 	private void BorrarUsuario(Hashtable<String, Usuario> Usuarios, String nombre_Archivo) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Ingrese el ID del usuario que desea eliminar: ");
 		String aux_ID = sc.nextLine();
-		if (Usuarios.remove(aux_ID) != null) {
-			System.out.println("Usuario " + aux_ID + " ha sido eliminado");
+		if (this.getID_Usuario().equals(aux_ID) != true) {
+			if (Usuarios.remove(aux_ID) != null) {
+				System.out.println("Usuario " + aux_ID + " ha sido eliminado");
+			} else {
+				System.out.println("El usuario ingresado no existe");
+			}
 		} else {
-			System.out.println("El usuario ingresado no existe");
+			System.out.println("No te puedes eliminar a ti mismo, otro administrador debe hacerlo");
 		}
+	
 	}
 	
 	private void EditarUsuarios(Hashtable<String, Usuario> Usuarios, String nombre_Archivo) {
