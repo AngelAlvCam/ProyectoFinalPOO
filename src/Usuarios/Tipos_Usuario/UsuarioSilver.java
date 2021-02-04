@@ -37,8 +37,9 @@ public class UsuarioSilver extends Usuario{
 		
 		while (stat == true) {
 			System.out.println("1) Dados");
-			System.out.println("2) Blackjack");
-			System.out.println("3) Salir");
+			System.out.println("2) Maquina traga monedas");
+			System.out.println("3) Ruleta");
+			System.out.println("4) Salir");
 			op = sc.nextInt();
 			System.out.println("Ingrese su apuesta, usted puede apostar a lo mucho la mitad de su total de fichas");
 			apuesta = sc.nextInt();
@@ -49,10 +50,14 @@ public class UsuarioSilver extends Usuario{
 						Agregar_Fichas(apuesta, win);
 						break;
 					case 2:
-						win = Blackjack.Jugar();
+						win = Maquina_traga_monedas.Jugar();
 						Agregar_Fichas(apuesta, win);
 						break;
 					case 3:
+						win = Ruleta.Jugar();
+						Agregar_Fichas(apuesta, win);
+						break;
+					case 4:
 						stat = false;
 						break;
 					default:

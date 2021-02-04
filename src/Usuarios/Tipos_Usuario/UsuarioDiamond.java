@@ -36,7 +36,9 @@ public class UsuarioDiamond extends Usuario{
 			System.out.println("1) Dados");
 			System.out.println("2) Carrera de caballos");
 			System.out.println("3) Blackjack");
-			System.out.println("4) Salir");
+			System.out.println("4) Maquina traga monedas");
+			System.out.println("5) Ruleta");
+			System.out.println("6) Salir");
 			op = sc.nextInt();
 			System.out.println("Ingrese su apuesta, usted puede apostar todas sus fichas");
 			apuesta = sc.nextInt();
@@ -55,6 +57,14 @@ public class UsuarioDiamond extends Usuario{
 						Agregar_Fichas(apuesta, win);
 						break;
 					case 4:
+						win = Maquina_traga_monedas.Jugar();
+						Agregar_Fichas(apuesta, win);
+						break;
+					case 5:
+						win = Ruleta.Jugar();
+						Agregar_Fichas(apuesta, win);
+						break;
+					case 6:
 						stat = false;
 						break;
 					default:
