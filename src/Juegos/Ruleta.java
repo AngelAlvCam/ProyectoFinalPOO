@@ -16,7 +16,7 @@ public class Ruleta {
     int ruleta;
     Random aleatorio = new Random();
     Scanner sc = new Scanner(System.in);
-    int op =0;
+    int op = 4;
     
     private boolean JugarAux(){
         boolean win = false;

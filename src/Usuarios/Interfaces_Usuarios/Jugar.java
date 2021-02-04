@@ -20,7 +20,7 @@ public interface Jugar {
 	 * Este método debe definir al menú de acceso a juegos de cada usuario, de tal manera que cada
 	 * subclase de usuario tenga su propio menú con los juegos correspondientes.
 	 */
-	void MenuJugar();
+	boolean MenuJugar();
 	
 	/**
 	 * Este método debe encargarse de verificar si una apuesta es válida para cada tipo de

@@ -77,4 +77,5 @@ public abstract class Usuario implements Serializable, Jugar {
 				ID_Usuario + ", " + fichas + ", " + contrasena + ", ";
 		return aux;
 	}
+
 }

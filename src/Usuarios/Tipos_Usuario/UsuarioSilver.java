@@ -24,8 +24,8 @@ public class UsuarioSilver extends Usuario{
 	
 	
 	@Override
-	public void MenuJugar() {
-		System.out.println("Menu silver");
+	public boolean MenuJugar() {
+		System.out.println("* Menu silver *");
 		/*
 		 * Aquí va el menú de juegos para los usuarios tipo "Silver"
 		 */
@@ -35,39 +35,43 @@ public class UsuarioSilver extends Usuario{
 		boolean stat = true;
 		Scanner sc = new Scanner(System.in);
 		
-		while (stat == true) {
 			System.out.println("1) Dados");
 			System.out.println("2) Maquina traga monedas");
 			System.out.println("3) Ruleta");
 			System.out.println("4) Salir");
 			op = sc.nextInt();
-			System.out.println("Ingrese su apuesta, usted puede apostar a lo mucho la mitad de su total de fichas");
-			apuesta = sc.nextInt();
-			if (Verificar_Apuesta(apuesta) == true) {
-				switch (op) {
-					case 1:
-						win = Dados.Jugar();
-						Agregar_Fichas(apuesta, win);
-						break;
-					case 2:
-						win = Maquina_traga_monedas.Jugar();
-						Agregar_Fichas(apuesta, win);
-						break;
-					case 3:
-						win = Ruleta.Jugar();
-						Agregar_Fichas(apuesta, win);
-						break;
-					case 4:
-						stat = false;
-						break;
-					default:
-						System.out.println("Opción inválida");
-						break;
+			if (op != 4) {
+				System.out.println("Fichas: " + getFichas());
+				System.out.println("Ingrese su apuesta, usted puede apostar a lo mucho la mitad de su total de fichas");
+				apuesta = sc.nextInt();
+				if (Verificar_Apuesta(apuesta) == true) {
+					switch (op) {
+						case 1:
+							win = Dados.Jugar();
+							Agregar_Fichas(apuesta, win);
+							break;
+						case 2:
+							win = Maquina_traga_monedas.Jugar();
+							Agregar_Fichas(apuesta, win);
+							break;
+						case 3:
+							win = Ruleta.Jugar();
+							Agregar_Fichas(apuesta, win);
+							break;
+						case 4:
+							stat = false;
+							break;
+						default:
+							System.out.println("Opción inválida");
+							break;
+					}
+				} else {
+					System.out.println("La cantidad de fichas es inválida... ");
 				}
 			} else {
-				System.out.println("La cantidad de fichas es inválida... ");
+				stat = false;
 			}
-		}
+			return stat;
 	}
 
 	@Override

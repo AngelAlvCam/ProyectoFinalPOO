@@ -21,18 +21,16 @@ public class UsuarioDiamond extends Usuario{
 	}
 	
 	@Override
-	public void MenuJugar() {
-		System.out.println("Menu diamond");
+	public boolean MenuJugar() {
+		System.out.println("* Menu diamond* ");
 		/*
 		 * Aquí va el menú de juegos para los usuarios tipo "Diamond"
 		 */
 		int op;
 		int apuesta;
-		boolean win;
-		boolean stat = true;
+		boolean win, stat = true;
 		Scanner sc = new Scanner(System.in);
 		
-		while (stat == true) {
 			System.out.println("1) Dados");
 			System.out.println("2) Carrera de caballos");
 			System.out.println("3) Blackjack");
@@ -40,42 +38,46 @@ public class UsuarioDiamond extends Usuario{
 			System.out.println("5) Ruleta");
 			System.out.println("6) Salir");
 			op = sc.nextInt();
-			System.out.println("Ingrese su apuesta, usted puede apostar todas sus fichas");
-			apuesta = sc.nextInt();
-			if (Verificar_Apuesta(apuesta) == true) {
-				switch (op) {
-					case 1:
-						win = Dados.Jugar();
-						Agregar_Fichas(apuesta, win);
-						break;
-					case 2:
-						win = Carrera_de_caballos.Jugar();
-						Agregar_Fichas(apuesta, win);
-						break;
-					case 3:
-						win = Blackjack.Jugar();
-						Agregar_Fichas(apuesta, win);
-						break;
-					case 4:
-						win = Maquina_traga_monedas.Jugar();
-						Agregar_Fichas(apuesta, win);
-						break;
-					case 5:
-						win = Ruleta.Jugar();
-						Agregar_Fichas(apuesta, win);
-						break;
-					case 6:
-						stat = false;
-						break;
-					default:
-						System.out.println("Opción inválida");
-						break;
+			if (op != 6) {
+				System.out.println("Ingrese su apuesta, usted puede apostar todas sus fichas");
+				apuesta = sc.nextInt();
+				if (Verificar_Apuesta(apuesta) == true) {
+					switch (op) {
+						case 1:
+							win = Dados.Jugar();
+							Agregar_Fichas(apuesta, win);
+							break;
+						case 2:
+							win = Carrera_de_caballos.Jugar();
+							Agregar_Fichas(apuesta, win);
+							break;
+						case 3:
+							win = Blackjack.Jugar();
+							Agregar_Fichas(apuesta, win);
+							break;
+						case 4:
+							win = Maquina_traga_monedas.Jugar();
+							Agregar_Fichas(apuesta, win);
+							break;
+						case 5:
+							win = Ruleta.Jugar();
+							Agregar_Fichas(apuesta, win);
+							break;
+						case 6:
+							stat = false;
+							break;
+						default:
+							System.out.println("Opción inválida");
+							break;
+					}
+				} else {
+					System.out.println("La cantidad de fichas es inválida... ");
 				}
-				
 			} else {
-				System.out.println("La cantidad de fichas es inválida... ");
+				stat = false;
 			}
-		}
+			return stat;
+		
 	}
 
 	@Override

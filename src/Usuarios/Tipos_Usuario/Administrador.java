@@ -15,9 +15,9 @@ public class Administrador extends Usuario {
 	}
 	
 	@Override
-	public void MenuJugar() {
+	public boolean MenuJugar() {
 		// TODO Auto-generated method stub
-		
+		return true;
 	}
 
 	public boolean Verificar_Apuesta(int apuesta) {

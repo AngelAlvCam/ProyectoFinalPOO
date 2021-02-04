@@ -19,7 +19,10 @@ public class Prueba {
 		int op;
 		boolean stat = true;
 		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("¡Bienvenido!");
 		while (stat) {
+			System.out.println("* Menu principal *");
 			System.out.println("1) Iniciar sesion");
 			System.out.println("2) Crear usuario");
 			System.out.println("3) Salir");
@@ -34,6 +37,7 @@ public class Prueba {
 				break;
 			case 3:
 				stat = false;
+				System.out.println("¡Hasta luego!");
 				break;
 			case 4:
 				System.out.println("Opción inválida");
@@ -53,6 +57,7 @@ public class Prueba {
 		Scanner sc = new Scanner(System.in);
 		int op;
 		Usuario aux;
+		System.out.println("* Menu de registro *");
 		System.out.println("1) Usuario Diamond");
 		System.out.println("2) Usuario Golden");
 		System.out.println("3) Usuario Silver");
@@ -97,9 +102,15 @@ public class Prueba {
 					Administrador auxadmin = (Administrador) aux;
 					auxadmin.MenuAdmin(Usuarios, nombre_Archivo);
 				} else {
-					aux.MenuJugar();
-					Utilidades.ActualizarArchivo(nombre_Archivo, Usuarios);
-					System.out.println("Progreso guardado");
+					boolean stat = true;
+					System.out.println("Sesión iniciada: " + aux.getID_Usuario());
+					System.out.println("¡Hola " + aux.getNombre() + " " + aux.getApellido_P() + " " + aux.getApellido_M() + "!");
+					while (stat == true) {
+						stat = aux.MenuJugar();
+						Utilidades.ActualizarArchivo(nombre_Archivo, Usuarios);
+						System.out.println("Progreso guardado");
+					}
+					System.out.println("Sesión cerrada: " + aux.getID_Usuario());
 				}
 			} else {
 				System.out.println("Contraseña incorrecta...");

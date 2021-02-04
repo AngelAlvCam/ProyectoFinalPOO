@@ -21,6 +21,7 @@ public class Blackjack {
             int op = 0;
             int jugador=0;
             int repartidor=0;
+            int repartidor1=0;
             boolean win=false;
             int carta1=0;
             int carta2=0;
@@ -36,14 +37,24 @@ public class Blackjack {
                 carta2=aleatorio1.nextInt(10)+1;
                 System.out.println("Las cartas del repartidor son "+carta1+ " y una carta oculta");
                 repartidor = carta1 + carta2;
+                repartidor1= carta1;
                 System.out.println("Si deseas otra carta presiona 1 si ya no quieres mas cartas presiona 2");
                 op = sc.nextInt();
                 while(op != 2){
                     carta2=aleatorio1.nextInt(10)+1;
                     System.out.println("La carta que recibiste fue "+carta2);
+                    if(repartidor >= 17){
+                        System.out.println("El repartidor no toma mas cartas");
+                    }else{
+                        carta1=aleatorio1.nextInt(10)+1;
+                        System.out.println("El repartidor toma otra carta");
+                        repartidor1= carta1+repartidor1;
+                        System.out.println("La suma de las cartas del repartidor son "+repartidor1+ " y una carta oculta");
+                        repartidor = carta1 +repartidor;
+                    }
                     jugador = carta2 + jugador;
-                    repartidor = carta2 +repartidor;
-                    System.out.println("La suma de estas cartas es de "+jugador);
+                    //repartidor = carta2 +repartidor;
+                    System.out.println("La suma de tus cartas es de "+jugador);
                     System.out.println("Si deseas otra carta presiona 1 si ya no quieres mas cartas presiona 2");
                     op = sc.nextInt();
                     
