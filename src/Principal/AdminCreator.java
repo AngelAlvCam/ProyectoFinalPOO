@@ -5,8 +5,12 @@ import Usuarios.Tipos_Usuario.*;
 import java.util.Hashtable;
 
 /*
+ * 
  * user: aacfi
  * password: soyadminxd
+ * 
+ * Éste se trata de un programa que al ejecutarse de forma independiente permite la creación de usuarios.
+ * Hace uso de los métodos de la clase "Utilidades" para añadir al administrador creado en el archivo de usuarios.
  */
 
 public class AdminCreator {

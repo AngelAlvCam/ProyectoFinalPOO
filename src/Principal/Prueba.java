@@ -10,11 +10,12 @@ import javax.swing.*;
 
 public class Prueba {
 
+	static String nombre_Archivo = "usuarios.txt";
+	
 	public static void main(String[] args) {
 		
-		String nombre_Archivo = "usuarios.txt";
 		Hashtable<String, Usuario> Usuarios = new Hashtable<String, Usuario>();
-		AbrirArchivo(nombre_Archivo, Usuarios);
+		Utilidades.AbrirArchivo(nombre_Archivo, Usuarios);
 		int op;
 		boolean stat = true;
 		Scanner sc = new Scanner(System.in);
@@ -29,7 +30,7 @@ public class Prueba {
 				break;
 			case 2:
 				RegistrarUsuario(Usuarios);
-				ActualizarArchivo(nombre_Archivo, Usuarios);
+				Utilidades.ActualizarArchivo(nombre_Archivo, Usuarios);
 				break;
 			case 3:
 				stat = false;
@@ -41,6 +42,13 @@ public class Prueba {
 		}
 	}
 	
+	/**
+	 * Método estático desde el cual se realizan las llamadas a los métodos estáticos de las subclases de 
+	 * usuario que se encargan de la creación de usuario.
+	 * @param Usuarios Una colección de la clase "Hashtable", con claves "String" y objetos de la clase
+	 * "Usuario", la cual funciona como un registro de usuarios en tiempo de ejecución que posteriormente
+	 * será reescrita en un archivo de texto que preserva a los usuarios registrados.
+	 */
 	public static void RegistrarUsuario(Hashtable<String, Usuario> Usuarios) {
 		Scanner sc = new Scanner(System.in);
 		int op;
@@ -65,6 +73,17 @@ public class Prueba {
 		}
 	}
 	
+	/**
+	 * Método estático que permite al usuario iniciar sesión con su identificador y contraseña.
+	 * Este método es llamado desde el método "main". Dentro de este método se solicita al usuario ingresar
+	 * su identificador y contraseña, y si el "Hashtable" argumentado contiene a un "Usuario" con el que se
+	 * comparta nombre, y la contraseña coincida con él, entonces es posible el inicio de sesión.
+	 * Si el inicio de sesión es posible, se verificará si el usuario es "Administrador". En caso positivo,
+	 * se realiza una llamada al menu de la clase correspondiente; en caso contrario, se llamará al menú de juegos
+	 * ordinario para todos los usuarios.
+	 * @param Usuarios Una colección de tipo hashtable con claves "String" y objetos de la clase "Usuario", tal
+	 * que las claves son las contraseñas de los usuarios, y el objeto "Usuario" es el usuario en sí.
+	 */
 	public static void IniciarSesion(Hashtable<String, Usuario> Usuarios ) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Ingrese su ID: ");
@@ -74,7 +93,12 @@ public class Prueba {
 			System.out.println("Ingrese la contraseña: ");
 			String contra = sc.nextLine();
 			if (aux.getContrasena().equals(contra)) {
+				if (aux.getClass().getName().equals("Administrador")) {
+					Administrador auxadmin = (Administrador) aux;
+					auxadmin.MenuAdmin(Usuarios, nombre_Archivo);
+				} else {
 				aux.MenuJugar();
+				}
 			} else {
 				System.out.println("Contraseña incorrecta...");
 			}
@@ -83,43 +107,6 @@ public class Prueba {
 		}
 	}
 	
-	public static void ActualizarArchivo(String nombre_archivo, Hashtable<String, Usuario> Usuarios) {
-		try {
-			File file = new File(nombre_archivo);
-			FileOutputStream fos = new FileOutputStream(file);
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(Usuarios);
-			oos.close();
-		// FileNotFoundException, IOException, 
-		} catch (FileNotFoundException e) {
-		} catch (IOException e) {
-		}
-	}
-	
-	public static void AbrirArchivo(String nombre_Archivo, Hashtable<String, Usuario> Usuarios) {
-		try {	
-			File file = new File(nombre_Archivo);
-			if (file.exists() == true) {
-				FileInputStream fis = new FileInputStream(file);
-				ObjectInputStream ois = new ObjectInputStream(fis);
-				Hashtable<String, Usuario> aux = (Hashtable<String, Usuario>) ois.readObject();
-				Set<String> keySet = aux.keySet();
-				for(String key : keySet) {
-					Usuarios.put(key, aux.get(key));
-				}
-				System.out.println(Usuarios.toString());
-				ois.close();
-			} else {
-				System.out.println("El archivo no existe, se creará uno nuevo");
-				file.createNewFile();
-			}
-		} catch (FileNotFoundException e) {
-			System.out.println("FileNotFoundException");
-		} catch (IOException e) {
-			System.out.println("IOException");
-		} catch (ClassNotFoundException e) {
-			System.out.println("ClassNotFoundException");
-		}
-	}
+
 	
 }

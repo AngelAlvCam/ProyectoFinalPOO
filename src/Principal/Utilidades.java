@@ -12,7 +12,22 @@ import java.util.Set;
 
 import Usuarios.Usuario;
 
+/**
+ * Esta clase presenta métodos utiles para otras clases. El objetivo de estos métodos es , principalmente,
+ * la operación con el archivo de texto involucrado con la persistencia de la información.
+ * @author Flutt
+ *
+ */
 public class Utilidades {
+	/**
+	 * Este método copia el contenido del hashtable contenido en un archivo (archivo de objetos) a un
+	 * objeto de la clase "Hashtable". 
+	 * En esencia, este método es el que permite la persistencia de la información.
+	 * @param nombre_Archivo Un objeto de la clase "String" que denota el nombre del archivo de texto del cual
+	 * se quiere copiar el objeto de la clase "Hashtable" contenido.
+	 * @param Usuarios Un objeto de la clase "Hashtable" en el cual se desea copiar el contenido del archivo
+	 * de texto. 
+	 */
 	public static void AbrirArchivo(String nombre_Archivo, Hashtable<String, Usuario> Usuarios) {
 		try {	
 			File file = new File(nombre_Archivo);
@@ -39,6 +54,14 @@ public class Utilidades {
 		}
 	}
 	
+	/**
+	 * Este método permite sobreescribir el contenido del archivo de texto que permite la persistencia de la
+	 * información con el contenido adquirido por el hashtable utilizado en tiempo de ejecución.
+	 * @param nombre_archivo Un objeto de la clase "String" que denota el nombre del archivo de objetos que se
+	 * desea sobreescribir. 
+	 * @param Usuarios Un objeto de la clase "Hashtable" que se desea sobreescribir en el archivo de objetos cuyo
+	 * nombre es argumentado..
+	 */
 	public static void ActualizarArchivo(String nombre_archivo, Hashtable<String, Usuario> Usuarios) {
 		try {
 			File file = new File(nombre_archivo);
