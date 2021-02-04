@@ -93,7 +93,7 @@ public class Prueba {
 			System.out.println("Ingrese la contraseña: ");
 			String contra = sc.nextLine();
 			if (aux.getContrasena().equals(contra)) {
-				if (aux.getClass().getName().equals("Administrador")) {
+				if (aux.getClass().getName().equals("Usuarios.Tipos_Usuario.Administrador")) {
 					Administrador auxadmin = (Administrador) aux;
 					auxadmin.MenuAdmin(Usuarios, nombre_Archivo);
 				} else {
