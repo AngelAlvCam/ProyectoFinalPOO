@@ -42,6 +42,7 @@ public class UsuarioGolden extends Usuario{
 			System.out.println("4) Maquina traga monedas");
 			System.out.println("5) Ruleta");
 			System.out.println("6) Salir");
+			System.out.println("Usted tiene " + this.getFichas() + " fichas");
 		
 		do {
 			op = Utilidades.IntInput();
