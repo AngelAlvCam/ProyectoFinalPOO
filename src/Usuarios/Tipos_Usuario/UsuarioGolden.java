@@ -2,6 +2,8 @@ package Usuarios.Tipos_Usuario;
 
 import Usuarios.Usuario;
 import Juegos.*;
+import Juegos.Carrera_de_caballos.Carrera_de_caballos;
+
 import java.util.Hashtable;
 import java.util.Scanner;
 
