@@ -7,7 +7,7 @@ package Juegos;
 
 import java.util.Random;
 import java.util.Scanner;
-
+/** @author Luis Carlos**/
 /**@author crismartinez Esta clase es la encargada de realizar lo que se le denomina juego de Black Jack, a traves de un metodo static 
  * se implementan dos randoms en los cuales se van agregando a un contador de los valores de las cartas y asi mismo 
  * cuantas cartas se han utilizado hasta el momento; para que con los contadores utilizados se comparen segun las reglas del juego 
@@ -28,16 +28,51 @@ public class Blackjack {
             int carta2=0;
             int numJ;
             int numR;
+            int a=0,a2=0;
 		System.out.println("Bienvenido al blackjack");
                 System.out.println("Presione enter para empezar el juego");
                 sc.nextLine();
                 carta1=aleatorio.nextInt(10)+1;
                 carta2=aleatorio1.nextInt(10)+1;
+                
                 System.out.println("Las cartas que recibise son "+carta1+ " Y "+carta2);
+                if(carta1==1||carta2==1) {
+                	System.out.println("Recibio un As que valor desea que tenga 1 o 11, si desea que tenga un valor de 1 pulse 1 si desea que tenga valor de 11 pulse 2");
+                	a=sc.nextInt();
+                	if(a==1) {
+                		System.out.println("Estas seguro podrias ganar, pulsa 1 para confirmar, pulsa 2 para que tenga un valor de 11");
+                		a2=sc.nextInt();
+                		if(a2==2) {
+                			if(carta1==1) {
+                    			carta1=11;
+                    		}
+                    		if(carta2==1) {
+                    			carta2=11;
+                    		}
+                		}
+                	}
+                	if(a==2) {
+                		if(carta1==1) {
+                			carta1=11;
+                		}
+                		if(carta2==1) {
+                			carta2=11;
+                		}
+                	}
+                }
                 jugador = carta1 + carta2;
                 System.out.println("La suma de estas cartas es de "+jugador);
                 carta1=aleatorio.nextInt(10)+1;
                 carta2=aleatorio1.nextInt(10)+1;
+                if(carta1==1||carta2==1) {
+                	
+                		if(carta1==1&&carta1+carta2+10<=21) {
+                			carta1=11;
+                		}
+                		if(carta2==1&&carta1+carta2+10<=21) {
+                			carta2=11;
+                		}       	
+                }
                 numJ=2;
                 System.out.println("Las cartas del repartidor son "+carta1+ " y una carta oculta");
                 repartidor = carta1 + carta2;
@@ -48,11 +83,29 @@ public class Blackjack {
                 while(op != 2){
                     carta2=aleatorio1.nextInt(10)+1;
                     System.out.println("La carta que recibiste fue "+carta2);
+                    if(carta2==1) {
+                    	System.out.println("Recibio un As que valor desea que tenga 1 o 11, si desea que tenga un valor de 1 pulse 1 si desea que tenga valor de 11 pulse 2");
+                    	a=sc.nextInt();
+                    	if(a==2) {
+                    			carta2=11;
+                    			if(jugador+carta2>21) {
+                    				System.out.println("La carta que recibio no puede valer 11 sino perdería su valor es de 1");
+                    				carta2=1;
+                    			}
+                    	}
+                    }
                     if(repartidor >= 17){
                         System.out.println("El repartidor no toma mas cartas");
                     }else{
                         carta1=aleatorio1.nextInt(10)+1;
                         System.out.println("El repartidor toma otra carta");
+                        if(carta1==1) {
+                        	
+                    		if(carta1==1&&carta1+repartidor+10<=21) {
+                    			carta1=11;
+                    		}
+                    	     	
+                    }
                         repartidor1= carta1+repartidor1;
                         numR++;
                         System.out.println("La suma de las cartas del repartidor son "+repartidor1+ " y una carta oculta, lleva en total "+numR+" cartas");
@@ -66,17 +119,47 @@ public class Blackjack {
                     op = sc.nextInt();
                     
                 }
+                while(repartidor<17){
+                    
+                    carta1=aleatorio1.nextInt(10)+1;
+                    System.out.println("El repartidor toma otra carta");
+                    if(carta1==1) {
+                    	
+                		if(carta1==1&&carta1+repartidor+10<=21) {
+                			carta1=11;
+                		}
+                	     	
+                }
+                    repartidor1= carta1+repartidor1;
+                    numR++;
+                    System.out.println("La suma de las cartas del repartidor son "+repartidor1+ " y una carta oculta, lleva en total "+numR+" cartas");
+                    repartidor = carta1 +repartidor;
+                    
+                
+                }
                 
                 System.out.println("El valor de tus cartas es de "+jugador+ " con "+numJ+" cartas");
                 
                 System.out.println("La suma de las cartas del repartidor "+repartidor+" con "+numR+" cartas");
-                if((jugador > repartidor) && (jugador <=21)&& (numJ <= numR)){
+                if((jugador > repartidor) && (jugador <=21) && (numJ==2) ){
+                    System.out.println("Felicidades ganaste con BlackJack ");
+                    win = true;
+                }
+                else if((jugador > repartidor) && (jugador <=21)){
+                     System.out.println("Felicidades ganaste");
+                        win = true;
+                }else if((repartidor > 21) && (jugador <= 21) ){
                     System.out.println("Felicidades ganaste");
                     win = true;
-                }else if((repartidor > 21) && (jugador <= 21) && (numJ <= numR)){
-                    System.out.println("Felicidades ganaste");
+                
+             
+                }else if((repartidor==jugador) ){
+                    System.out.println("Felicidades ganaste por quedar en empate");
                     win = true;
-                }else{
+                
+             
+                }
+                else{
                     System.out.println("Lo siento perdiste");
                     win = false;
                 }
