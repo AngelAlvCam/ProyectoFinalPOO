@@ -50,7 +50,7 @@ public class Caballo extends Thread{
 	 */
 	@Override
 	public void run(){
-		while (conteo < 2000) {
+		while (conteo < 200000) {
 			conteo++;
 		//	System.out.println(this.getName() + ": " + conteo);
 		}
