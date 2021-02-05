@@ -7,6 +7,15 @@ import Usuarios.Usuario;
 import java.util.Scanner;
 import java.util.Set;
 
+/**
+ * Este tipo de usuario tiene el control sobre la administración de todos los demás de tipos de usuario, 
+ * respecto a sus atributos y existencia.
+ * El usuario administrador no define los métodos usuales de "MenuJugar", "VerificarApuesta", y "Agregar_Fichas",
+ * de la misma manera que las otras clases que heredan de "Usuario", pues no es la intención del usuario ejecutar
+ * los juegos realizados. 
+ * @author Flutt
+ *
+ */
 public class Administrador extends Usuario {
 
 	public Administrador(String ID_Usuario, String nombre, String apellido_P, 
@@ -31,6 +40,12 @@ public class Administrador extends Usuario {
 		
 	}
 	
+	/**
+	 * Método de instancia que denota las operaciones que puede realizar un usuario de tipo "Administrador"
+	 * @param Usuarios Objeto de la clase Hashtable que denota a los usuarios registrados en el programa.
+	 * @param nombre_Archivo Objeto de la clase String que denota el nombre del archivo de objetos que se
+	 * actualizará con ciertas operaciones. 
+	 */
 	public void MenuAdmin(Hashtable<String, Usuario> Usuarios, String nombre_Archivo) {
 		int op;
 		boolean stat = true;
@@ -44,10 +59,12 @@ public class Administrador extends Usuario {
 			op = Utilidades.IntInput();
 			switch(op) {
 				case 1:
-					BorrarUsuario(Usuarios, nombre_Archivo);
+					BorrarUsuario(Usuarios);
+					Utilidades.ActualizarArchivo(nombre_Archivo, Usuarios);
 					break;
 				case 2:
-					EditarUsuarios(Usuarios, nombre_Archivo);
+					EditarUsuarios(Usuarios);
+					Utilidades.ActualizarArchivo(nombre_Archivo, Usuarios);
 					break;
 				case 3:
 					VerUsuarios(Usuarios);
@@ -62,6 +79,11 @@ public class Administrador extends Usuario {
 		}
 	}
 	
+	/**
+	 * Método estático que permite la creación de usuarios de tipo "Administrador" y registrarlos en el
+	 * hashtable que denota a los usuarios registrados en el programa.
+	 * @param Usuarios
+	 */
 	public static void CrearUsuario(Hashtable<String, Usuario> Usuarios) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Ingrese su nombre: ");
@@ -89,7 +111,11 @@ public class Administrador extends Usuario {
 		}
 	}
 	
-	private void BorrarUsuario(Hashtable<String, Usuario> Usuarios, String nombre_Archivo) {
+	/**
+	 * Método de instancia que permite la eliminación de usuarios en el sistema en general. 
+	 * @param Usuarios Un objeto de la clase Hashtable que contiene a todos los usuarios registrados.
+	 */
+	private void BorrarUsuario(Hashtable<String, Usuario> Usuarios) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Ingrese el ID del usuario que desea eliminar: ");
 		String aux_ID = sc.nextLine();
@@ -105,7 +131,11 @@ public class Administrador extends Usuario {
 	
 	}
 	
-	private void EditarUsuarios(Hashtable<String, Usuario> Usuarios, String nombre_Archivo) {
+	/**
+	 * Método de instancia que permite la edición de los atributos de un usuarios. 
+	 * @param Usuarios Una colección de tipo Hashtable que contiene a todos los usuarios registrados.
+	 */
+	private void EditarUsuarios(Hashtable<String, Usuario> Usuarios) {
 		Scanner sc = new Scanner(System.in);
 		int op;
 		System.out.println("Ingrese el ID del usuario que desea editar: ");

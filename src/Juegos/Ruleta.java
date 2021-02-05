@@ -10,7 +10,14 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-import Principal.Utilidades;
+/** @author crismartinez Clase encargada del juego de ruleta, como la ruleta americana, esta tiene tres opciones de juego 
+ * lo cual se refiere, a jugar por numeros prediciendo cual valor saldra, por colores para lo cual se manejan listas y comparandolo con 
+ * el color del valor encontrado y por area en donde el valor predicho tiene que estar dentro de un rango determinado de cada area,
+ * el juego consiste en determinar el valor o color el cual saldra en la ruleta, esto se hace a traves de las listas y los
+ * parametros asignados
+ *
+ * 
+ */
 
 public class Ruleta {
     List<Integer> Rojo = new ArrayList();
@@ -18,7 +25,7 @@ public class Ruleta {
     int ruleta;
     Random aleatorio = new Random();
     Scanner sc = new Scanner(System.in);
-    int op = 4;
+    int op =0;
     
     private boolean JugarAux(){
         boolean win = false;
@@ -31,22 +38,25 @@ public class Ruleta {
             System.out.println("2)Por colores");
             System.out.println("3)Por area");
             System.out.println("4)Salir");
-            op = Utilidades.IntInput();
+            op = sc.nextInt();
             switch(op){
                 case 1:
                     win = juegoNumeros(win);
                    System.out.println("Pulse enter para continuar");
                     sc.nextLine();
+                    op=4;
                     break;
                 case 2:
                     win = juegoColores(win);
                     System.out.println("Pulse enter para continuar");
                     sc.nextLine();
+                    op=4;
                     break;
                 case 3:
                     win = juegoArea(win);
                     System.out.println("Pulse enter para continuar");
                     sc.nextLine();
+                    op=4;
                     break;
                 case 4:
                     System.out.println("Gracias por jugar");
@@ -68,7 +78,13 @@ public class Ruleta {
     	}
     }
     
+    /** Funcion para jugar a traves de un numero, en esta modalida tienes la opcion de escoger entre uno, dos o tres
+     * numeros a los cuales apostar, a traves de un random se genera el numero de la ruleta y se compara con los valores 
+     * que el usuario escogio esta es la modalidad de juego que menos probabilidad de ganar se tiene, debido 
+     * a que dependiendo de la opcion que se escogio la maxima probabilidad esd e 3/36.
     
+    
+    */
     private boolean juegoNumeros(boolean valor){
         int num1;
         int num2;
@@ -78,12 +94,12 @@ public class Ruleta {
         System.out.println("1");
         System.out.println("2");
         System.out.println("3");
-        op = Utilidades.IntInput();
+        op = sc.nextInt();
         switch(op){
             case 1:
                 System.out.println("Cual es el numero al cual quiere apostarle");
                 System.out.println("Puede seleccionar entre el 1 y el 36");
-                num1 = Utilidades.IntInput();
+                num1 = sc.nextInt();
                 ruleta = aleatorio.nextInt(36)+1;
                 System.out.println("La pelotita callo en el numero "+ruleta);
                 if(num1 == ruleta){
@@ -99,9 +115,9 @@ public class Ruleta {
             case 2:
                 System.out.println("Cuales son los numeros a los cuales quiere apostarle");
                 System.out.println("Primer Numero, Puede seleccionar entre el 1 y el 36");
-                num1 = Utilidades.IntInput();
+                num1 = sc.nextInt();
                 System.out.println("Segundo Numero, Puede seleccionar entre el 1 y el 36");
-                num2 = Utilidades.IntInput();
+                num2 = sc.nextInt();
                 ruleta = aleatorio.nextInt(36)+1;
                 System.out.println("La pelotita callo en el numero "+ruleta);
                 if((num1 == ruleta)|| (num2 == ruleta)){
@@ -116,11 +132,11 @@ public class Ruleta {
             case 3:
                 System.out.println("Cuales son los numeros a los cuales quiere apostarle");
                 System.out.println("Primer Numero, Puede seleccionar entre el 1 y el 36");
-                num1 = Utilidades.IntInput();
+                num1 = sc.nextInt();
                 System.out.println("Segundo Numero, Puede seleccionar entre el 1 y el 36");
-                num2 = Utilidades.IntInput();
+                num2 = sc.nextInt();
                 System.out.println("Tercer Numero, Puede seleccionar entre el 1 y el 36");
-                num3 = Utilidades.IntInput();
+                num3 = sc.nextInt();
                 ruleta = aleatorio.nextInt(36)+1;
                 System.out.println("La pelotita callo en el numero "+ruleta);
                 if((num1 == ruleta)|| (num2 == ruleta) || (num3 == ruleta)){
@@ -137,12 +153,15 @@ public class Ruleta {
         }
         return valor;
     }
-        
+    /** Funcion para jugar en la ruleta por colores, escoges el color al cual le apostaras y generando un random, a traves de este 
+     * se compara si este pertenece a la lista de color escogido, esta es una de las formas de juego que tiene mas probabilidades 
+     * de ganar debido a que solo existen dos posibles resulyados con una probabilida de similar entre ellos 
+    */  
     private boolean juegoColores(boolean valor){
         System.out.println("Seleccione el color");
         System.out.println("1)Negro");
         System.out.println("2)Rojo");
-        op = Utilidades.IntInput();
+        op = sc.nextInt();
         switch(op){
             case 1:
                 ruleta=aleatorio.nextInt(36)+1;
@@ -174,19 +193,24 @@ public class Ruleta {
         return valor;
     }
     
+    /** Funcion para realizar el juego por area de la ruleta, en la cual se te da la opcion de escoger el area en la cual
+     * jugaras, la ruleta a traves de un random genera el numero de esta y lo compara con los valores permitidos dentro de 
+     * area
+     */
+    
     private boolean juegoArea(boolean valor){
         System.out.println("Seleccione la opcion que desee");
         System.out.println("En cual area desea jugar");
         System.out.println("En la 1");
         System.out.println("En la 2");
         System.out.println("En la 3");
-        op = Utilidades.IntInput();
+        op = sc.nextInt();
         switch(op){
             case 1:
                 System.out.println("El area 1 contiene los numeros del 1 al 12");
                 ruleta=aleatorio.nextInt(36)+1;
                 System.out.println("La pelotita callo en el numero "+ruleta);
-                if((ruleta >= 1) || (ruleta <=12)){
+                if((ruleta >= 1) && (ruleta <=12)){
                     System.out.println("Felicidades ganaste");
                     valor = true;
                 }else{
@@ -199,8 +223,8 @@ public class Ruleta {
                 System.out.println("El area 2 contiene los numeros del 13 al 24");
                 ruleta=aleatorio.nextInt(36)+1;
                 System.out.println("La pelotita callo en el numero "+ruleta);
-                if((ruleta >= 13) || (ruleta <=24)){
-                    System.out.println("Felicidades ganaste tu ganancia es de 5 veces tu apuesta");
+                if((ruleta >= 13) && (ruleta <=24)){
+                    System.out.println("Felicidades ganaste tu ganancia");
                     valor = true;
                 }else{
                     System.out.println("Uy que mala suerte");
@@ -212,8 +236,8 @@ public class Ruleta {
                 System.out.println("El area 3 contiene los numeros del 24 al 36");
                 ruleta=aleatorio.nextInt(36)+1;
                 System.out.println("La pelotita callo en el numero "+ruleta);
-                if((ruleta >= 25) || (ruleta <=36)){
-                    System.out.println("Felicidades ganaste tu ganancia es de 5 veces tu apuesta");
+                if((ruleta >= 25) && (ruleta <=36)){
+                    System.out.println("Felicidades ganaste tu ganancia");
                     valor = true;
                 }else{
                     System.out.println("Uy que mala suerte");
@@ -228,9 +252,9 @@ public class Ruleta {
         return valor;
     }
     
-    
-    
-    
+   /** Funcion creada para asignar el valor a la correspondiente lista de acuerdo al color a la cual pertenece este,
+    * el valor va del 1 al 36, estos pueden pertenecer a valores negros o rojos
+   */ 
         void llenandoLista(){
         Rojo.add(1);
         Negro.add(2);
@@ -270,4 +294,5 @@ public class Ruleta {
         Rojo.add(36);
 
     }
+
 }

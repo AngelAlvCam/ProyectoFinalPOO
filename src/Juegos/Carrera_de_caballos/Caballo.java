@@ -3,7 +3,8 @@ package Juegos.Carrera_de_caballos;
 import java.util.Hashtable;
 
 /**
- * Esta clase representa a un caballo que correrá en la carrera de caballos. 
+ * Esta clase representa a un caballo que correrá en la carrera de caballos. Se trata de una
+ * implementación especial de hilos. 
  * @author Flutt
  *
  */
@@ -23,12 +24,6 @@ public class Caballo extends Thread{
 	private int conteo = 0;
 	
 	/**
-	 * Variable estática que representa el nombre del caballo que el usuario seleccionó para apostar
-	 * a favor.
-	 */
-	private static String seleccionado;
-	
-	/**
 	 * Colección de tipo "Hashtable" con clave enteras y objetos "String" que permite conocer el orden
 	 * de llegada de cada caballo a la meta.
 	 */
@@ -38,9 +33,9 @@ public class Caballo extends Thread{
 	 * Constructor de la clase "Caballo" con un sólo argumento.
 	 * @param nombre Un objeto de la clase "String" que denota el nombre asignado al caballo.
 	 */
-	public Caballo(String nombre) {
+	Caballo(String nombre) {
 		this.setName(nombre);
-		if (posicion != 1) {
+		if (posicion != 1) { 
 			posicion = 1;
 		}
 		if (aux.isEmpty() != true) {
@@ -48,6 +43,11 @@ public class Caballo extends Thread{
 		}
 	}
 	
+	/**
+	 * Sobreescritura del método "run" dado por la interfaz "Runnable" que es implmentada en la clase
+	 * "Thread" que hereda a ésta clase.
+	 * En este método se definen los pasos que realiza cada objeto de la clase que representa a un caballo.
+	 */
 	@Override
 	public void run(){
 		while (conteo < 2000) {
@@ -57,11 +57,13 @@ public class Caballo extends Thread{
 		aux.put(posicion++, this.getName());
 	}
 	
-	public static void setSeleccionado(String nombre) {
-		seleccionado = nombre;
-	}
-	
-	public static Hashtable<Integer, String> getPosiciones(){
+	/**
+	 * Método estático que retorna al hashtable que denota las posiciones en las que los caballos
+	 * concluyeron con la carrera.
+	 * @return Un objeto de la clase "Hashtable" con claves enteras y obejetos "String", que representan
+	 * las posiciones en las que llegaron los caballos y los nombres de los caballos, respectivamente.
+	 */
+	static Hashtable<Integer, String> getPosiciones(){
 		return aux;
 	}
 }

@@ -34,6 +34,7 @@ public class UsuarioGolden extends Usuario{
 		int apuesta;
 		boolean win;
 		boolean stat = true;
+		boolean stat2 = false;
 		
 			System.out.println("1) Dados");
 			System.out.println("2) Carrera de caballos");
@@ -41,13 +42,16 @@ public class UsuarioGolden extends Usuario{
 			System.out.println("4) Maquina traga monedas");
 			System.out.println("5) Ruleta");
 			System.out.println("6) Salir");
+		
+		do {
 			op = Utilidades.IntInput();
-			
-			if (op != 6) {
-				System.out.println("Ingrese su apuesta, usted no puede apostar todas sus fichas en una sóla jugada");
+			if (op == 6) {
+				stat = false;
+			} else if (op >= 1 && op <= 5) {
+				System.out.println("Ingrese su apuesta, usted NO puede apostar todas sus fichas en una jugadas: ");
 				apuesta = Utilidades.IntInput();
 				if (Verificar_Apuesta(apuesta) == true) {
-					switch (op) {
+					switch(op){
 					case 1:
 						win = Dados.Jugar();
 						Agregar_Fichas(apuesta, win);
@@ -68,17 +72,18 @@ public class UsuarioGolden extends Usuario{
 						win = Ruleta.Jugar();
 						Agregar_Fichas(apuesta, win);
 						break;
-					default:
-						System.out.println("Opción inválida");
-						break;
-				}
+					}
+					stat2 = false;
 				} else {
-					System.out.println("La cantidad de fichas es inválida... ");
+					System.out.println("E: La cantidad de fichas es inválida");
+					stat2 = true;
 				}
 			} else {
-				stat = false;
+				System.out.println("E: Opción inválida");
+				stat2 = true;
 			}
-			return stat;
+		} while (stat2 == true);
+		return stat;
 	}
 	
 	@Override
@@ -106,11 +111,11 @@ public class UsuarioGolden extends Usuario{
 	public static void CrearUsuario(Hashtable<String, Usuario> Usuarios) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Ingrese el nombre del usuario: ");
-		String nombre = sc.nextLine();
+		String nombre = Utilidades.StringInput();
 		System.out.println("Ingrese el apellido paterno del usuario: ");
-		String apellido_P = sc.nextLine();
+		String apellido_P = Utilidades.StringInput();
 		System.out.println("Ingrese el apellido materno del usuario: ");
-		String apellido_M = sc.nextLine();
+		String apellido_M = Utilidades.StringInput();
 		System.out.println("Ingrese un identificador");
 		String id = sc.nextLine();
 		while (Usuarios.containsKey(id) == true) {

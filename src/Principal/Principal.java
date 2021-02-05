@@ -18,6 +18,7 @@ public class Principal {
 		Utilidades.AbrirArchivo(nombre_Archivo, Usuarios);
 		int op;
 		boolean stat = true;
+		boolean stat2 = false;
 		
 		System.out.println("¡Bienvenido!");
 		while (stat) {
@@ -25,23 +26,26 @@ public class Principal {
 			System.out.println("1) Iniciar sesion");
 			System.out.println("2) Crear usuario");
 			System.out.println("3) Salir");
-			op = Utilidades.IntInput();
-			switch(op) {
-			case 1:
-				IniciarSesion(Usuarios);
-				break;
-			case 2:
-				RegistrarUsuario(Usuarios);
-				Utilidades.ActualizarArchivo(nombre_Archivo, Usuarios);
-				break;
-			case 3:
-				stat = false;
-				System.out.println("¡Hasta luego!");
-				break;
-			case 4:
-				System.out.println("Opción inválida");
-				break;
-			}
+			do {
+				op = Utilidades.IntInput();
+				if (op == 3) {
+					stat = false;
+				} else if (op >= 1 && op <= 2) {
+					switch(op) {
+					case 1:
+						Principal.IniciarSesion(Usuarios);
+						break;
+					case 2:
+						Principal.RegistrarUsuario(Usuarios);
+						Utilidades.ActualizarArchivo(nombre_Archivo, Usuarios);
+						break;
+					}
+					stat2 = false;
+				} else {
+					System.out.println("E: Opción inválida");
+					stat2 = true;
+				}
+			} while (stat2 == true);
 		}
 	}
 	
@@ -105,7 +109,6 @@ public class Principal {
 					while (stat == true) {
 						stat = aux.MenuJugar();
 						Utilidades.ActualizarArchivo(nombre_Archivo, Usuarios);
-						System.out.println("Progreso guardado");
 					}
 					System.out.println("Sesión cerrada: " + aux.getID_Usuario());
 				}

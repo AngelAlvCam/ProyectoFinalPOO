@@ -19,6 +19,7 @@ public interface Jugar {
 	/**
 	 * Este método debe definir al menú de acceso a juegos de cada usuario, de tal manera que cada
 	 * subclase de usuario tenga su propio menú con los juegos correspondientes.
+	 * Retorna un valor booleano que determina la permanencia en el menu de manera externa.
 	 */
 	boolean MenuJugar();
 	

@@ -8,14 +8,15 @@ package Juegos;
 import java.util.Random;
 import java.util.Scanner;
 
-/**
- *
- * @author miguelmartinez
+/** @author crismartinez Juego de casino, en el cual se gana a traves del valor de la suma del lanzamiento de dos dados
+ * debido a que mientras los dos valores menos probables de sacar te dan una vistoria inmedianta, tres valores te dan una derrota intantania
+ * y los valores restantes de la suma te dan puntos en el juego los cuales se van acumulando hasta llegar a un puntaje ganador 
+ * esto se realiza a travez de dos randoms que se suman y posterior a eso dependiendo del resultado se termina el juego, se gana 
+ * o simplemente se vuelven a tirar los dados   
  */
 public class Dados {
     
-    //Random aleatorio = new Random();
-    //Random aleatorio1 = new Random();
+    
     
     public static boolean Jugar() {
         System.out.println("Este es un juego de dados");

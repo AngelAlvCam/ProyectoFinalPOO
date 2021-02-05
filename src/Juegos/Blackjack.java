@@ -8,9 +8,7 @@ package Juegos;
 import java.util.Random;
 import java.util.Scanner;
 
-import Principal.Utilidades;
-
-/**Esta clase es la encargada de realizar lo que se le denomina juego de Black Jack, a traves de un metodo static 
+/**@author crismartinez Esta clase es la encargada de realizar lo que se le denomina juego de Black Jack, a traves de un metodo static 
  * se implementan dos randoms en los cuales se van agregando a un contador de los valores de las cartas y asi mismo 
  * cuantas cartas se han utilizado hasta el momento; para que con los contadores utilizados se comparen segun las reglas del juego 
  * para asi de acuerdo a esta devolver el respectivo valor por un return
@@ -46,7 +44,7 @@ public class Blackjack {
                 repartidor1= carta1;
                 numR=2;
                 System.out.println("Si deseas otra carta presiona 1 si ya no quieres mas cartas presiona 2");
-                op = Utilidades.IntInput();
+                op = sc.nextInt();
                 while(op != 2){
                     carta2=aleatorio1.nextInt(10)+1;
                     System.out.println("La carta que recibiste fue "+carta2);
@@ -65,7 +63,7 @@ public class Blackjack {
                     numJ++;
                     System.out.println("La suma de tus cartas es de "+jugador+" llevas "+numJ+" cartas");
                     System.out.println("Si deseas otra carta presiona 1 si ya no quieres mas cartas presiona 2");
-                    op = Utilidades.IntInput();
+                    op = sc.nextInt();
                     
                 }
                 

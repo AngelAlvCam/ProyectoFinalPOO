@@ -86,16 +86,31 @@ public class Utilidades {
 		boolean stat = false;
 		Scanner sc = new Scanner(System.in);
 		int op = 0;
-		while (stat == false) {
-			try {	
-			//	System.out.println("INPUT: ");
-				op = sc.nextInt();
-				stat = true;
-			} catch (InputMismatchException e) {
-				System.out.println("E: Seleccione con valores enteros");
-				return op = IntInput();
-			}
+		try {	
+		//	System.out.println("INPUT: ");
+			op = sc.nextInt();
+			stat = true;
+		} catch (InputMismatchException e) {
+			System.out.println("E: Seleccione con valores enteros");
+			return op = IntInput();
 		}
 		return op;
+	}
+	
+	/**
+	 * Este método se encarga de controlar la entrada de cadenas de caracteres para los atributos de
+	 * nombres y apellidos en los usuarios.
+	 * @return Un objeto String que cumple con las características propuestas en el método.
+	 */
+	public static String StringInput() { 
+		Scanner sc = new Scanner(System.in);
+		String aux = null;
+		aux = sc.nextLine();
+		if ((aux != null) && (aux.length() >= 3) && (aux.matches("^[a-zA-Z]*$"))) {
+			return aux;
+		} else {
+			System.out.println("E: Cadena inválida, debe tener más de 3 caracteres alfabéticos");
+			return aux = StringInput();
+		}
 	}
 }

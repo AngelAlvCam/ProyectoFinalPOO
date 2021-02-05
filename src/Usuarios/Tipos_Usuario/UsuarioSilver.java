@@ -6,6 +6,7 @@ import java.util.Hashtable;
 import java.util.Scanner;
 
 import Juegos.*;
+import Juegos.Carrera_de_caballos.Carrera_de_caballos;
 import Principal.Utilidades;
 
 /**
@@ -34,44 +35,46 @@ public class UsuarioSilver extends Usuario{
 		int apuesta;
 		boolean win;
 		boolean stat = true;
+		boolean stat2 = false;
 		
 			System.out.println("1) Dados");
 			System.out.println("2) Maquina traga monedas");
 			System.out.println("3) Ruleta");
 			System.out.println("4) Salir");
+			System.out.println("Usted tiene " + this.getFichas() + " fichas");
+			
+		do {	
 			op = Utilidades.IntInput();
-			if (op != 4) {
-				System.out.println("Fichas: " + getFichas());
-				System.out.println("Ingrese su apuesta, usted puede apostar a lo mucho la mitad de su total de fichas");
+			if (op == 4) {
+				stat = false;
+			} else if (op >= 1 && op <= 3) {
+				System.out.println("Ingrese su apuesta, usted puede apostar A LO MUCHO la mistad sus fichas en una jugada: ");
 				apuesta = Utilidades.IntInput();
 				if (Verificar_Apuesta(apuesta) == true) {
-					switch (op) {
-						case 1:
-							win = Dados.Jugar();
-							Agregar_Fichas(apuesta, win);
-							break;
-						case 2:
-							win = Maquina_traga_monedas.Jugar();
-							Agregar_Fichas(apuesta, win);
-							break;
-						case 3:
-							win = Ruleta.Jugar();
-							Agregar_Fichas(apuesta, win);
-							break;
-						case 4:
-							stat = false;
-							break;
-						default:
-							System.out.println("Opción inválida");
-							break;
+					switch(op){
+					case 1:
+						win = Dados.Jugar();
+						Agregar_Fichas(apuesta, win);
+						break;
+					case 2:
+						win = Maquina_traga_monedas.Jugar();
+						Agregar_Fichas(apuesta, win);
+						break;
+					case 3:
+						win = Ruleta.Jugar();
+						Agregar_Fichas(apuesta, win);
+						break;
 					}
 				} else {
-					System.out.println("La cantidad de fichas es inválida... ");
+					System.out.println("E: La cantidad de fichas es inválida");
+					stat2 = true;
 				}
 			} else {
-				stat = false;
+				System.out.println("E: Opción inválida");
+				stat2 = true;
 			}
-			return stat;
+		} while (stat2 == true);
+		return stat;
 	}
 
 	@Override
@@ -100,11 +103,11 @@ public class UsuarioSilver extends Usuario{
 	public static void CrearUsuario(Hashtable<String, Usuario> Usuarios) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Ingrese el nombre del usuario: ");
-		String nombre = sc.nextLine();
+		String nombre = Utilidades.StringInput();
 		System.out.println("Ingrese el apellido paterno del usuario: ");
-		String apellido_P = sc.nextLine();
+		String apellido_P = Utilidades.StringInput();
 		System.out.println("Ingrese el apellido materno del usuario: ");
-		String apellido_M = sc.nextLine();
+		String apellido_M = Utilidades.StringInput();
 		System.out.println("Ingrese un identificador");
 		String id = sc.nextLine();
 		while (Usuarios.containsKey(id) == true) {
