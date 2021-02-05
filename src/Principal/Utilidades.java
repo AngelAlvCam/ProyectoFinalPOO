@@ -1,6 +1,7 @@
 package Principal;
 
 import java.io.File;
+import java.util.Scanner;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -8,6 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Hashtable;
+import java.util.InputMismatchException;
 import java.util.Set;
 
 import Usuarios.Usuario;
@@ -73,5 +75,27 @@ public class Utilidades {
 		} catch (FileNotFoundException e) {
 		} catch (IOException e) {
 		}
+	}
+	
+	/**
+	 * Este método se encarga de controlar las excepciones al ingresar valores enteros. Reemplaza a la clausula "<scanner object>.nextInt".
+	 * Es un método de naturaleza recursiva, tal que si se atrapa a la excepción, se realiza una llamada autoreferencial al mismo método.
+	 * @return Un valor entero ingresado dentro del mismo método, o sea, una entrada válida.
+	 */
+	public static int IntInput() {
+		boolean stat = false;
+		Scanner sc = new Scanner(System.in);
+		int op = 0;
+		while (stat == false) {
+			try {	
+			//	System.out.println("INPUT: ");
+				op = sc.nextInt();
+				stat = true;
+			} catch (InputMismatchException e) {
+				System.out.println("E: Seleccione con valores enteros");
+				return op = IntInput();
+			}
+		}
+		return op;
 	}
 }

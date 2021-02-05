@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import Principal.Utilidades;
+
 public class Ruleta {
     List<Integer> Rojo = new ArrayList();
     List<Integer> Negro = new ArrayList();
@@ -29,7 +31,7 @@ public class Ruleta {
             System.out.println("2)Por colores");
             System.out.println("3)Por area");
             System.out.println("4)Salir");
-            op = sc.nextInt();
+            op = Utilidades.IntInput();
             switch(op){
                 case 1:
                     win = juegoNumeros(win);
@@ -76,12 +78,12 @@ public class Ruleta {
         System.out.println("1");
         System.out.println("2");
         System.out.println("3");
-        op = sc.nextInt();
+        op = Utilidades.IntInput();
         switch(op){
             case 1:
                 System.out.println("Cual es el numero al cual quiere apostarle");
                 System.out.println("Puede seleccionar entre el 1 y el 36");
-                num1 = sc.nextInt();
+                num1 = Utilidades.IntInput();
                 ruleta = aleatorio.nextInt(36)+1;
                 System.out.println("La pelotita callo en el numero "+ruleta);
                 if(num1 == ruleta){
@@ -97,9 +99,9 @@ public class Ruleta {
             case 2:
                 System.out.println("Cuales son los numeros a los cuales quiere apostarle");
                 System.out.println("Primer Numero, Puede seleccionar entre el 1 y el 36");
-                num1 = sc.nextInt();
+                num1 = Utilidades.IntInput();
                 System.out.println("Segundo Numero, Puede seleccionar entre el 1 y el 36");
-                num2 = sc.nextInt();
+                num2 = Utilidades.IntInput();
                 ruleta = aleatorio.nextInt(36)+1;
                 System.out.println("La pelotita callo en el numero "+ruleta);
                 if((num1 == ruleta)|| (num2 == ruleta)){
@@ -114,11 +116,11 @@ public class Ruleta {
             case 3:
                 System.out.println("Cuales son los numeros a los cuales quiere apostarle");
                 System.out.println("Primer Numero, Puede seleccionar entre el 1 y el 36");
-                num1 = sc.nextInt();
+                num1 = Utilidades.IntInput();
                 System.out.println("Segundo Numero, Puede seleccionar entre el 1 y el 36");
-                num2 = sc.nextInt();
+                num2 = Utilidades.IntInput();
                 System.out.println("Tercer Numero, Puede seleccionar entre el 1 y el 36");
-                num3 = sc.nextInt();
+                num3 = Utilidades.IntInput();
                 ruleta = aleatorio.nextInt(36)+1;
                 System.out.println("La pelotita callo en el numero "+ruleta);
                 if((num1 == ruleta)|| (num2 == ruleta) || (num3 == ruleta)){
@@ -140,7 +142,7 @@ public class Ruleta {
         System.out.println("Seleccione el color");
         System.out.println("1)Negro");
         System.out.println("2)Rojo");
-        op = sc.nextInt();
+        op = Utilidades.IntInput();
         switch(op){
             case 1:
                 ruleta=aleatorio.nextInt(36)+1;
@@ -178,7 +180,7 @@ public class Ruleta {
         System.out.println("En la 1");
         System.out.println("En la 2");
         System.out.println("En la 3");
-        op = sc.nextInt();
+        op = Utilidades.IntInput();
         switch(op){
             case 1:
                 System.out.println("El area 1 contiene los numeros del 1 al 12");

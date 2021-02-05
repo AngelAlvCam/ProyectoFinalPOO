@@ -6,6 +6,7 @@ import java.util.Hashtable;
 import java.util.Scanner;
 
 import Juegos.*;
+import Principal.Utilidades;
 
 /**
  * Este tipo de usaurio tiene acceso restringido a todos los juegos, y no puede
@@ -33,17 +34,16 @@ public class UsuarioSilver extends Usuario{
 		int apuesta;
 		boolean win;
 		boolean stat = true;
-		Scanner sc = new Scanner(System.in);
 		
 			System.out.println("1) Dados");
 			System.out.println("2) Maquina traga monedas");
 			System.out.println("3) Ruleta");
 			System.out.println("4) Salir");
-			op = sc.nextInt();
+			op = Utilidades.IntInput();
 			if (op != 4) {
 				System.out.println("Fichas: " + getFichas());
 				System.out.println("Ingrese su apuesta, usted puede apostar a lo mucho la mitad de su total de fichas");
-				apuesta = sc.nextInt();
+				apuesta = Utilidades.IntInput();
 				if (Verificar_Apuesta(apuesta) == true) {
 					switch (op) {
 						case 1:

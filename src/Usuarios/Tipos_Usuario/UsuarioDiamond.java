@@ -5,6 +5,7 @@ import java.util.Hashtable;
 import java.util.Scanner;
 import Juegos.*;
 import Juegos.Carrera_de_caballos.Carrera_de_caballos;
+import Principal.Utilidades;
 
 /**
  * Este tipo de usuario tiene acceso a todos los juegos sin restricción
@@ -30,7 +31,6 @@ public class UsuarioDiamond extends Usuario{
 		int op;
 		int apuesta;
 		boolean win, stat = true;
-		Scanner sc = new Scanner(System.in);
 		
 			System.out.println("1) Dados");
 			System.out.println("2) Carrera de caballos");
@@ -38,10 +38,10 @@ public class UsuarioDiamond extends Usuario{
 			System.out.println("4) Maquina traga monedas");
 			System.out.println("5) Ruleta");
 			System.out.println("6) Salir");
-			op = sc.nextInt();
+			op = Utilidades.IntInput();
 			if (op != 6) {
 				System.out.println("Ingrese su apuesta, usted puede apostar todas sus fichas");
-				apuesta = sc.nextInt();
+				apuesta = Utilidades.IntInput();
 				if (Verificar_Apuesta(apuesta) == true) {
 					switch (op) {
 						case 1:

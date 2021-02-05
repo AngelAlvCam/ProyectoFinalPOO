@@ -8,7 +8,7 @@ import java.util.Set;
 import java.util.Scanner;
 import javax.swing.*;
 
-public class Prueba {
+public class Principal {
 
 	static String nombre_Archivo = "usuarios.txt";
 	
@@ -18,7 +18,6 @@ public class Prueba {
 		Utilidades.AbrirArchivo(nombre_Archivo, Usuarios);
 		int op;
 		boolean stat = true;
-		Scanner sc = new Scanner(System.in);
 		
 		System.out.println("¡Bienvenido!");
 		while (stat) {
@@ -26,7 +25,7 @@ public class Prueba {
 			System.out.println("1) Iniciar sesion");
 			System.out.println("2) Crear usuario");
 			System.out.println("3) Salir");
-			op = sc.nextInt();
+			op = Utilidades.IntInput();
 			switch(op) {
 			case 1:
 				IniciarSesion(Usuarios);
@@ -54,14 +53,12 @@ public class Prueba {
 	 * será reescrita en un archivo de texto que preserva a los usuarios registrados.
 	 */
 	public static void RegistrarUsuario(Hashtable<String, Usuario> Usuarios) {
-		Scanner sc = new Scanner(System.in);
 		int op;
-		Usuario aux;
 		System.out.println("* Menu de registro *");
 		System.out.println("1) Usuario Diamond");
 		System.out.println("2) Usuario Golden");
 		System.out.println("3) Usuario Silver");
-		op = sc.nextInt();
+		op = Utilidades.IntInput();
 		switch(op) {
 		case 1: // Diamond
 			UsuarioDiamond.CrearUsuario(Usuarios);

@@ -3,6 +3,7 @@ package Usuarios.Tipos_Usuario;
 import Usuarios.Usuario;
 import Juegos.*;
 import Juegos.Carrera_de_caballos.Carrera_de_caballos;
+import Principal.Utilidades;
 
 import java.util.Hashtable;
 import java.util.Scanner;
@@ -33,7 +34,6 @@ public class UsuarioGolden extends Usuario{
 		int apuesta;
 		boolean win;
 		boolean stat = true;
-		Scanner sc = new Scanner(System.in);
 		
 			System.out.println("1) Dados");
 			System.out.println("2) Carrera de caballos");
@@ -41,11 +41,11 @@ public class UsuarioGolden extends Usuario{
 			System.out.println("4) Maquina traga monedas");
 			System.out.println("5) Ruleta");
 			System.out.println("6) Salir");
-			op = sc.nextInt();
+			op = Utilidades.IntInput();
 			
 			if (op != 6) {
 				System.out.println("Ingrese su apuesta, usted no puede apostar todas sus fichas en una sóla jugada");
-				apuesta = sc.nextInt();
+				apuesta = Utilidades.IntInput();
 				if (Verificar_Apuesta(apuesta) == true) {
 					switch (op) {
 					case 1:

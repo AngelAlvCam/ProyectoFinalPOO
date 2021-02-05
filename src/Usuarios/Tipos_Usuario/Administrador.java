@@ -34,7 +34,6 @@ public class Administrador extends Usuario {
 	public void MenuAdmin(Hashtable<String, Usuario> Usuarios, String nombre_Archivo) {
 		int op;
 		boolean stat = true;
-		Scanner sc = new Scanner(System.in);
 		System.out.println("Menu admin");
 		
 		while (stat == true) {
@@ -42,7 +41,7 @@ public class Administrador extends Usuario {
 			System.out.println("2) Editar usuarios");
 			System.out.println("3) Ver usuarios");
 			System.out.println("4) Salir");
-			op = sc.nextInt();
+			op = Utilidades.IntInput();
 			switch(op) {
 				case 1:
 					BorrarUsuario(Usuarios, nombre_Archivo);
@@ -144,7 +143,7 @@ public class Administrador extends Usuario {
 				break;
 			case 5:
 				System.out.println("Ingrese la nueva cantidad de fichas");
-				aux2 = sc.nextInt();
+				aux2 = Utilidades.IntInput();
 				usuario.setFichas(aux2);
 				break;
 			default:
